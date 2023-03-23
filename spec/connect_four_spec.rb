@@ -7,7 +7,7 @@ describe ConnectFour do
 
       it 'updates the game board hash' do
         place_game.place_piece('X', 6)
-        game_board = place_game.get_instance_variable(:@game_board)
+        game_board = place_game.instance_variable_get(:@game_board)
         expect(game_board[:col6][0]).to eq('X')
       end
     end
