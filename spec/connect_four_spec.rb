@@ -20,11 +20,17 @@ describe ConnectFour do
                       col5: ['', '', '', '', '', ''],
                       col6: ['', '', '', '', '', ''],
                       col7: ['', '', '', '', '', '']}
-      subject(:filled_game) { described_class.new(filled_board) })}
+      subject(:filled_game) { described_class.new(filled_board) }
       it 'updates the place above the full space' do
-        filled_game.place.piece(:col1, 'O')
+        filled_game.place_piece(:col1, 'O')
         game_board = filled_game.instance_variable_get(:@game_board)
         expect(game_board[:col1][1]).to eq('O')
+      end
+
+      it 'updates the place if there are multiple full spaces in the column' do
+        filled_game.place_piece(:col2, 'X')
+        game_board = filled_game.instance_variable_get(:@game_board)
+        expect(game_board[:col2][3]).to eq('X')
       end
     end
   end

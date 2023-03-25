@@ -11,7 +11,10 @@ class ConnectFour
   end
 
   def place_piece(column, piece)
-    @game_board[column][0] = piece
+    @game_board[column][stack_column(column)] = piece
   end
-  
+
+  def stack_column(column)
+    @game_board[column].find_index { |el| el.empty?}
+  end
 end
