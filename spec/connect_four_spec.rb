@@ -35,4 +35,21 @@ describe ConnectFour do
     end
   end
 
+  define '#game_over?' do
+    context 'when four game pieces connect in a row' do
+      row_board = {col1: ['X', 'O', '', '', '', ''],
+                    col2: ['O', 'X', 'O', '', '', ''],
+                    col3: ['O', 'X', 'O', '', '', ''],
+                    col4: ['X', 'O', 'O', '', '', ''],
+                    col5: ['O', 'X', 'O', '', '', ''],
+                    col6: ['', '', '', '', '', ''],
+                    col7: ['', '', '', '', '', '']}
+      subject(:row_game) { described_class.new(row_board)}
+
+      it 'returns true' do
+        expect(row_game.game_over?).to eq(true)
+      end
+    end
+  end
+
 end
