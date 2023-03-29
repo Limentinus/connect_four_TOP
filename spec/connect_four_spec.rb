@@ -50,6 +50,20 @@ describe ConnectFour do
         expect(row_game.game_over?).to eq(true)
       end
     end
+
+    context 'when four games pieces in a column connect' do
+      column_board = [['X', 'O', '', '', '', ''],
+                   ['O', 'X', '', '', '', ''],
+                   ['O', 'X', '', '', '', ''],
+                   ['X', 'O', 'O', '', '', ''],
+                   ['O', 'X', 'O', '', '', ''],
+                   ['X', 'X', 'X', 'X', '', ''],
+                   ['', '', '', '', '', '']]
+      subject(:column_game) { described_class.new(column_board)}
+      it 'returns true' do
+        expect(column_game.game_over?).to eq(true)
+      end
+    end
   end
 
   describe '#winning_line?' do
