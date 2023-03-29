@@ -17,4 +17,7 @@ class ConnectFour
   def stack_column(column)
     @game_board[column].find_index { |el| el.empty?}
   end
+
+  def game_over?
+  end
 end

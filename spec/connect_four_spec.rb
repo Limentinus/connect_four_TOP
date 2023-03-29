@@ -35,7 +35,7 @@ describe ConnectFour do
     end
   end
 
-  define '#game_over?' do
+  describe '#game_over?' do
     context 'when four game pieces connect in a row' do
       row_board = {col1: ['X', 'O', '', '', '', ''],
                     col2: ['O', 'X', 'O', '', '', ''],
