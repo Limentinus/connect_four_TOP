@@ -18,19 +18,29 @@ class ConnectFour
     @game_board[column].find_index { |el| el.empty?}
   end
 
-  # def game_over?
-  #   if @game_board.each_value {}
-  # end
+  def game_over?
+    
+  end
 
-   # def make_rows(board)
-  #   transposed_board = []
-  #   board[col1].length.times do |row|
-  #     transposed_row = []
-  #     board.each do |col, values|
-  #       transposed_row << values[row]
-  #     end
-  #     transposed_board << transposed_row
-  #   end
-  #   transposed_board
-  # end
+  def winning_line?(line)
+    line.each_cons(4) do |window|
+      return true if window.uniq.size == 1
+    end
+    false
+  end
+
+  def columns_to_rows(game_board)
+    num_rows = game_board[0].size
+    num_cols = game_board.size
+    row_board = Array.new(num_rows) { Array.new(num_cols) }
+  
+    num_rows.times do |row|
+      num_cols.times do |col|
+        row_board[row][col] = game_board[col][row]
+      end
+    end
+  
+    return row_board
+  end
+  
 end

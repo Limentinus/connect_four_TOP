@@ -52,12 +52,19 @@ describe ConnectFour do
     end
   end
 
-  describe '#check_for_winner' do
+  describe '#winning_line?' do
     subject(:game_lines) { described_class.new }
     context 'when a line with four or more of the same pieces in row is given' do
       line = ['O', 'X', 'X', 'X', 'X', '', '']
-      it 'returns winner' do
-        expect(game_lines.check_for_winner(line)).to eq('X')
+      it 'returns true' do
+        expect(game_lines.winning_line?(line)).to eq(true)
+      end
+    end
+
+    context 'when no four connect' do
+      line = ['O', 'X', 'X', 'O', 'X', '', '']
+      it 'returns false' do
+        expect(game_lines.winning_line?(line)).to eq(false)
       end
     end
   end
