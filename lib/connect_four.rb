@@ -23,12 +23,13 @@ class ConnectFour
     #check rows for win
     @game_rows.each do |row|
       return true if winning_line?(row)
+      false
     end
   end
 
   def winning_line?(line)
     line.each_cons(4) do |window|
-      return true if window.uniq.size == 1
+      return true if window.all? { |el| el == 'X'} || window.all? { |el| el == 'O' }
     end
     false
   end
