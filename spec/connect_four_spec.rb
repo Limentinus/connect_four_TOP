@@ -56,8 +56,8 @@ describe ConnectFour do
     subject(:game_lines) { described_class.new }
     context 'when a line with four or more of the same pieces in row is given' do
       line = ['O', 'X', 'X', 'X', 'X', '', '']
-      it 'returns true' do
-        expect(game_lines.check_for_winner(line)).to be_true
+      it 'returns winner' do
+        expect(game_lines.check_for_winner(line)).to eq('X')
       end
     end
   end
