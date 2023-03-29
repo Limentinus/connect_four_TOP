@@ -13,37 +13,37 @@ describe ConnectFour do
     end
 
     context 'when a piece is already in the column' do
-      filled_board = {col1: ['X', '', '', '', '', ''],
-                      col2: ['O', 'X', 'O', '', '', ''],
-                      col3: ['', '', '', '', '', ''],
-                      col4: ['', '', '', '', '', ''],
-                      col5: ['', '', '', '', '', ''],
-                      col6: ['', '', '', '', '', ''],
-                      col7: ['', '', '', '', '', '']}
+      filled_board = [['X', '', '', '', '', ''],
+                      ['O', 'X', 'O', '', '', ''],
+                      ['', '', '', '', '', ''],
+                      ['', '', '', '', '', ''],
+                      ['', '', '', '', '', ''],
+                      ['', '', '', '', '', ''],
+                      ['', '', '', '', '', '']]
       subject(:filled_game) { described_class.new(filled_board) }
       it 'updates the place above the full space' do
-        filled_game.place_piece(:col1, 'O')
+        filled_game.place_piece(0 , 'O')
         game_board = filled_game.instance_variable_get(:@game_board)
-        expect(game_board[:col1][1]).to eq('O')
+        expect(game_board[0][1]).to eq('O')
       end
 
       it 'updates the place if there are multiple full spaces in the column' do
-        filled_game.place_piece(:col2, 'X')
+        filled_game.place_piece(1 , 'X')
         game_board = filled_game.instance_variable_get(:@game_board)
-        expect(game_board[:col2][3]).to eq('X')
+        expect(game_board[1][3]).to eq('X')
       end
     end
   end
 
   describe '#game_over?' do
     context 'when four game pieces connect in a row' do
-      row_board = {col1: ['X', 'O', '', '', '', ''],
-                    col2: ['O', 'X', 'O', '', '', ''],
-                    col3: ['O', 'X', 'O', '', '', ''],
-                    col4: ['X', 'O', 'O', '', '', ''],
-                    col5: ['O', 'X', 'O', '', '', ''],
-                    col6: ['', '', '', '', '', ''],
-                    col7: ['', '', '', '', '', '']}
+      row_board = [['X', 'O', '', '', '', ''],
+                   ['O', 'X', 'O', '', '', ''],
+                   ['O', 'X', 'O', '', '', ''],
+                   ['X', 'O', 'O', '', '', ''],
+                   ['O', 'X', 'O', '', '', ''],
+                   ['', '', '', '', '', ''],
+                   ['', '', '', '', '', '']]
       subject(:row_game) { described_class.new(row_board)}
 
       it 'returns true' do
