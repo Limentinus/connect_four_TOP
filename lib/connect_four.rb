@@ -8,6 +8,7 @@ class ConnectFour
                                ['', '', '', '', '', ''],
                                ['', '', '', '', '', '']])
     @game_board = game_board
+    @game_rows = columns_to_rows(@game_board)
   end
 
   def place_piece(column, piece)
@@ -19,7 +20,10 @@ class ConnectFour
   end
 
   def game_over?
-    
+    #check rows for win
+    @game_rows.each do |row|
+      return true if winning_line?(row)
+    end
   end
 
   def winning_line?(line)
