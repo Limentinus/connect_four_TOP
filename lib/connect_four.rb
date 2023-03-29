@@ -1,12 +1,12 @@
 class ConnectFour
   
-  def initialize(game_board = { col1: ['', '', '', '', '', ''],
-                                col2: ['', '', '', '', '', ''],
-                                col3: ['', '', '', '', '', ''],
-                                col4: ['', '', '', '', '', ''],
-                                col5: ['', '', '', '', '', ''],
-                                col6: ['', '', '', '', '', ''],
-                                col7: ['', '', '', '', '', '']})
+  def initialize(game_board = [['', '', '', '', '', ''],
+                               ['', '', '', '', '', ''],
+                               ['', '', '', '', '', ''],
+                               ['', '', '', '', '', ''],
+                               ['', '', '', '', '', ''],
+                               ['', '', '', '', '', ''],
+                               ['', '', '', '', '', '']])
     @game_board = game_board
   end
 
@@ -18,6 +18,19 @@ class ConnectFour
     @game_board[column].find_index { |el| el.empty?}
   end
 
-  def game_over?
-  end
+  # def game_over?
+  #   if @game_board.each_value {}
+  # end
+
+   # def make_rows(board)
+  #   transposed_board = []
+  #   board[col1].length.times do |row|
+  #     transposed_row = []
+  #     board.each do |col, values|
+  #       transposed_row << values[row]
+  #     end
+  #     transposed_board << transposed_row
+  #   end
+  #   transposed_board
+  # end
 end
