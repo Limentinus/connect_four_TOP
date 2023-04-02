@@ -22,7 +22,7 @@ describe ConnectFour do
                       ['', '', '', '', '', '']]
       subject(:filled_game) { described_class.new(filled_board) }
       it 'updates the place above the full space' do
-        filled_game.place_piece(0 , 'O')
+        filled_game.place_piece(0, 'O')
         game_board = filled_game.instance_variable_get(:@game_board)
         expect(game_board[0][1]).to eq('O')
       end
@@ -51,7 +51,7 @@ describe ConnectFour do
       end
     end
 
-    context 'when four games pieces in a column connect' do
+    context 'when four game pieces in a column connect' do
       column_board = [['X', 'O', '', '', '', ''],
                    ['O', 'X', '', '', '', ''],
                    ['O', 'X', '', '', '', ''],
@@ -62,6 +62,21 @@ describe ConnectFour do
       subject(:column_game) { described_class.new(column_board)}
       it 'returns true' do
         expect(column_game.game_over?).to eq(true)
+      end
+    end
+
+    context 'when four game pieces in a diagonal connect' do
+      diagonal_board = [['X', 'O', '', '', '', ''],
+                   ['O', 'X', '', '', '', ''],
+                   ['O', 'O', 'X', 'X', '', ''],
+                   ['X', 'O', 'X', '', '', ''],
+                   ['O', 'X', 'O', '', '', ''],
+                   ['X', 'X', '', '', '', ''],
+                   ['', '', '', '', '', '']]
+      subject(:diagonal_game) { described_class.new(diagonal_board) }
+
+      it 'returns true' do
+        expect(diagonal_game.game_over?).to eq(true)
       end
     end
   end
@@ -79,6 +94,33 @@ describe ConnectFour do
       line = ['O', 'X', 'X', 'O', 'X', '', '']
       it 'returns false' do
         expect(game_lines.winning_line?(line)).to eq(false)
+      end
+    end
+  end
+
+  describe '#make_diagonals' do
+    diagonal_board = [['X', 'O', '', '', '', ''],
+                      ['O', 'X', '', '', '', ''],
+                      ['O', 'O', 'X', 'X', '', ''],
+                      ['X', 'O', 'X', '', '', ''],
+                      ['O', 'X', 'O', '', '', ''],
+                      ['X', 'X', '', '', '', ''],
+                      ['', '', '', '', '', '']]
+    subject(:diagonals_game) { described_class.new(diagonal_board)}
+    context 'when given the game_board' do
+      it 'returns an array of all the diagonals that are at least 4 spaces large' do
+        diagonals = [['X', 'O', '', ''],
+                    ['O', 'O', 'X', '', ''],
+                    ['X', 'X', 'X', 'X', '', ''],
+                    ['', 'X', 'O', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['', '', '', '', ''],
+                    ['X', 'X', '', ''],
+                    ['O', 'O', 'O', '', ''],
+                    ['O', 'O', 'X', '', '', ''],
+                    ['X', 'X', 'X', '', '', '']]
+        
+        expect(diagonals_game.make_diagonals).to eq(diagonals)
       end
     end
   end
