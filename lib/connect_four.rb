@@ -20,11 +20,16 @@ class ConnectFour
   end
 
   def game_over?
+    #check columns for win
+    @game_board.each do |column|
+      return true if winning_line?(column)
+    end
+
     #check rows for win
     @game_rows.each do |row|
       return true if winning_line?(row)
-      false
     end
+    false
   end
 
   def winning_line?(line)
