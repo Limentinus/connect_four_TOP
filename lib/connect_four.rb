@@ -5,6 +5,7 @@ class ConnectFour
   def initialize(game_board = Array.new(7, Array.new(6, '')))
     @game_board = game_board
     @game_rows = columns_to_rows(@game_board)
+    @game_diagonals = make_diagonals
   end
 
   def place_piece(column, piece)
@@ -25,6 +26,12 @@ class ConnectFour
     @game_rows.each do |row|
       return true if winning_line?(row)
     end
+
+    #check diagonals for win
+    @game_diagonals.each do |diagonal|
+      return true if winning_line?(diagonal)
+    end
+    
     false
   end
 
@@ -66,7 +73,41 @@ class ConnectFour
       diagonals << diagonal.compact
     end
     
+    #past game_board[6] to top right
+    2.times do |base|
+      diagonal = []
+      col = 6
+      until col < 0 do
+        diagonal << game_board[col][base + 1]
+        base += 1
+        col -= 1
+      end
+      diagonals << diagonal.compact
+    end
 
+    #top left to bottom right
+    (0..3).each do |col|
+      diagonal = []
+      row = 0
+      until col > 6 do
+        diagonal << game_board[col][row]
+        row += 1
+        col += 1
+      end
+      diagonals << diagonal.compact
+    end
+
+    #past game_board[1] towards bottom right
+    2.times do |base|
+      diagonal = []
+      col = 0
+      until col > 4 do
+        diagonal << game_board[col][base + 1]
+        col += 1
+        base += 1
+      end
+      diagonals << diagonal.compact
+    end 
     
     diagonals
   end
@@ -77,16 +118,16 @@ class ConnectFour
 end
   
   
-# diagonal_board = [['X', 'O', '', '', '', ''],
-#                       ['O', 'X', '', '', '', ''],
-#                       ['O', 'O', 'X', 'X', '', ''],
-#                       ['X', 'O', 'X', '', '', ''],
-#                       ['O', 'X', 'O', '', '', ''],
-#                       ['X', 'X', '', '', '', ''],
-#                       ['', '', '', '', '', '']]
-# test = ConnectFour.new(diagonal_board)
+diagonal_board = [['X', 'O', '', '', '', ''],
+                      ['O', 'X', '', '', '', ''],
+                      ['O', 'O', 'X', 'X', '', ''],
+                      ['X', 'O', 'X', '', '', ''],
+                      ['O', 'X', 'O', '', '', ''],
+                      ['X', 'X', '', '', '', ''],
+                      ['', '', '', '', '', '']]
+test = ConnectFour.new(diagonal_board)
 # p test.game_board[0][1]
-# p test.make_diagonals
+p test.make_diagonals
   
 
 
