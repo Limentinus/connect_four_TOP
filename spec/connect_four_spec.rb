@@ -115,15 +115,14 @@ describe ConnectFour do
                      ['', 'X', 'O', '', '', ''],
                      ['', '', '', '', ''],
                      ['', '', '', ''],
-                     ['X', 'X', '', ''],
-                     ['O', 'O', 'O', '', ''],
-                     ['O', 'O', 'X', '', '', ''],
                      ['X', 'X', 'X', '', '', ''],
+                     ['O', 'O', 'X', '', '', ''],
+                     ['O', 'O', 'O', '', ''],
+                     ['X', 'X', '', ''],
                      ['O', '', 'X', '', ''],
                      ['', '', '', '']]
         
-        intersection = diagonals_game.make_diagonals & diagonals
-        expect(intersection).to eq(diagonals)
+        expect(diagonals_game.make_diagonals).to eq(diagonals)
       end
     end
   end
