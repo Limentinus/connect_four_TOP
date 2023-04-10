@@ -1,12 +1,8 @@
 class ConnectFour
+
+  attr_reader :game_board
   
-  def initialize(game_board = [['', '', '', '', '', ''],
-                               ['', '', '', '', '', ''],
-                               ['', '', '', '', '', ''],
-                               ['', '', '', '', '', ''],
-                               ['', '', '', '', '', ''],
-                               ['', '', '', '', '', ''],
-                               ['', '', '', '', '', '']])
+  def initialize(game_board = Array.new(7, Array.new(6, '')))
     @game_board = game_board
     @game_rows = columns_to_rows(@game_board)
   end
@@ -53,4 +49,44 @@ class ConnectFour
     return row_board
   end
   
+  def make_diagonals(game_board = @game_board)
+
+    #bottom left to top right
+    diagonals = []
+    
+    (3..game_board.length - 1).each do |col|
+      diagonal = []
+      row = 0
+      until col < 0 do
+        diagonal << game_board[col][row]
+        row += 1
+        col -=1
+        # p diagonal
+      end
+      diagonals << diagonal.compact
+    end
+    
+
+    
+    diagonals
+  end
+
+
+  
+  
 end
+  
+  
+# diagonal_board = [['X', 'O', '', '', '', ''],
+#                       ['O', 'X', '', '', '', ''],
+#                       ['O', 'O', 'X', 'X', '', ''],
+#                       ['X', 'O', 'X', '', '', ''],
+#                       ['O', 'X', 'O', '', '', ''],
+#                       ['X', 'X', '', '', '', ''],
+#                       ['', '', '', '', '', '']]
+# test = ConnectFour.new(diagonal_board)
+# p test.game_board[0][1]
+# p test.make_diagonals
+  
+
+

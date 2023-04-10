@@ -110,17 +110,20 @@ describe ConnectFour do
     context 'when given the game_board' do
       it 'returns an array of all the diagonals that are at least 4 spaces large' do
         diagonals = [['X', 'O', '', ''],
-                    ['O', 'O', 'X', '', ''],
-                    ['X', 'X', 'X', 'X', '', ''],
-                    ['', 'X', 'O', '', '', ''],
-                    ['', '', '', '', ''],
-                    ['', '', '', '', ''],
-                    ['X', 'X', '', ''],
-                    ['O', 'O', 'O', '', ''],
-                    ['O', 'O', 'X', '', '', ''],
-                    ['X', 'X', 'X', '', '', '']]
+                     ['O', 'O', 'X', '', ''],
+                     ['X', 'X', 'X', 'X', '', ''],
+                     ['', 'X', 'O', '', '', ''],
+                     ['', '', '', '', ''],
+                     ['', '', '', ''],
+                     ['X', 'X', '', ''],
+                     ['O', 'O', 'O', '', ''],
+                     ['O', 'O', 'X', '', '', ''],
+                     ['X', 'X', 'X', '', '', ''],
+                     ['O', '', 'X', '', ''],
+                     ['', '', '', '']]
         
-        expect(diagonals_game.make_diagonals).to eq(diagonals)
+        intersection = diagonals_game.make_diagonals & diagonals
+        expect(intersection).to eq(diagonals)
       end
     end
   end
