@@ -113,7 +113,8 @@ class ConnectFour
   end
 
 
-  
+  def print_board(board = @game_board)
+  end
   
 end
   
