@@ -31,7 +31,7 @@ class ConnectFour
     @game_diagonals.each do |diagonal|
       return true if winning_line?(diagonal)
     end
-    
+
     false
   end
 
@@ -113,21 +113,22 @@ class ConnectFour
   end
 
 
-  
+  def print_board(board = @game_board)
+  end
   
 end
   
   
-diagonal_board = [['X', 'O', '', '', '', ''],
-                      ['O', 'X', '', '', '', ''],
-                      ['O', 'O', 'X', 'X', '', ''],
-                      ['X', 'O', 'X', '', '', ''],
-                      ['O', 'X', 'O', '', '', ''],
-                      ['X', 'X', '', '', '', ''],
-                      ['', '', '', '', '', '']]
-test = ConnectFour.new(diagonal_board)
-# p test.game_board[0][1]
-p test.make_diagonals
+# diagonal_board = [['X', 'O', '', '', '', ''],
+#                       ['O', 'X', '', '', '', ''],
+#                       ['O', 'O', 'X', 'X', '', ''],
+#                       ['X', 'O', 'X', '', '', ''],
+#                       ['O', 'X', 'O', '', '', ''],
+#                       ['X', 'X', '', '', '', ''],
+#                       ['', '', '', '', '', '']]
+# test = ConnectFour.new(diagonal_board)
+# # p test.game_board[0][1]
+# p test.make_diagonals
   
 
 

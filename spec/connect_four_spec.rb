@@ -127,4 +127,22 @@ describe ConnectFour do
     end
   end
 
+  describe '#print_board' do
+    context 'when called' do
+      print_board = [['X', 'O', '', '', '', ''],
+                    ['O', 'X', '', '', '', ''],
+                    ['O', 'O', 'X', 'X', '', ''],
+                    ['X', 'O', 'X', '', '', ''],
+                    ['O', 'X', 'O', '', '', ''],
+                    ['X', 'X', '', '', '', ''],
+                    ['', '', '', '', '', '']]
+      subject(:print_game) { described_class.new(print_board) }
+      it 'prints the board' do
+        board_output = "| | | | | | | |\n| | | | | | | |\n| | | | |X| | |\n| | |X|X|O| | |\n|O|X|O|O|X|X| |\n|X|O|O|X|O|X| |\n"
+        printed_output = print_game.print_board
+        expect { printed_output }.to output(board_output).to_stdout
+      end
+    end
+  end
+
 end
