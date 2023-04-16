@@ -62,6 +62,7 @@ class ConnectFour
       return true if winning_line?(diagonal)
     end
 
+
     false
   end
 
