@@ -2,7 +2,7 @@ class ConnectFour
 
   attr_reader :game_board
   
-  def initialize(game_board = Array.new(7, Array.new(6, '')))
+  def initialize(game_board = Array.new(7, Array.new(6, ' ')))
     @game_board = game_board
     @game_rows = columns_to_rows(@game_board)
     @game_diagonals = make_diagonals
@@ -13,7 +13,7 @@ class ConnectFour
   end
 
   def stack_column(column)
-    @game_board[column].find_index { |el| el.empty?}
+    @game_board[column].find_index { |el| el == ' '}
   end
 
   def game_over?
@@ -113,22 +113,30 @@ class ConnectFour
   end
 
 
-  def print_board(board = @game_board)
+  def print_board
+    board_string = ""
+    @game_rows.reverse_each do |row|
+      row_string = "|"
+      row.each do |el|
+        row_string << "#{el}|"
+      end
+      board_string << "#{row_string}\n"
+    end
+    board_string
   end
   
 end
   
   
-# diagonal_board = [['X', 'O', '', '', '', ''],
-#                       ['O', 'X', '', '', '', ''],
-#                       ['O', 'O', 'X', 'X', '', ''],
-#                       ['X', 'O', 'X', '', '', ''],
-#                       ['O', 'X', 'O', '', '', ''],
-#                       ['X', 'X', '', '', '', ''],
-#                       ['', '', '', '', '', '']]
-# test = ConnectFour.new(diagonal_board)
-# # p test.game_board[0][1]
-# p test.make_diagonals
+diagonal_board = [['X', 'O', '', '', '', ''],
+                      ['O', 'X', '', '', '', ''],
+                      ['O', 'O', 'X', 'X', '', ''],
+                      ['X', 'O', 'X', '', '', ''],
+                      ['O', 'X', 'O', '', '', ''],
+                      ['X', 'X', '', '', '', ''],
+                      ['', '', '', '', '', '']]
+test = ConnectFour.new(diagonal_board)
+test.print_board
   
 
 
