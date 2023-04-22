@@ -13,13 +13,13 @@ describe ConnectFour do
     end
 
     context 'when a piece is already in the column' do
-      filled_board = [['X', '', '', '', '', ''],
-                      ['O', 'X', 'O', '', '', ''],
-                      ['', '', '', '', '', ''],
-                      ['', '', '', '', '', ''],
-                      ['', '', '', '', '', ''],
-                      ['', '', '', '', '', ''],
-                      ['', '', '', '', '', '']]
+      filled_board = [['X', ' ', ' ', ' ', ' ', ' '],
+                      ['O', 'X', 'O', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:filled_game) { described_class.new(filled_board) }
       it 'updates the place above the full space' do
         filled_game.place_piece(0, 'O')
@@ -37,13 +37,13 @@ describe ConnectFour do
 
   describe '#game_over?' do
     context 'when four game pieces connect in a row' do
-      row_board = [['X', 'O', '', '', '', ''],
-                   ['O', 'X', 'O', '', '', ''],
-                   ['O', 'X', 'O', '', '', ''],
-                   ['X', 'O', 'O', '', '', ''],
-                   ['O', 'X', 'O', '', '', ''],
-                   ['', '', '', '', '', ''],
-                   ['', '', '', '', '', '']]
+      row_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                   ['O', 'X', 'O', ' ', ' ', ' '],
+                   ['O', 'X', 'O', ' ', ' ', ' '],
+                   ['X', 'O', 'O', ' ', ' ', ' '],
+                   ['O', 'X', 'O', ' ', ' ', ' '],
+                   [' ', ' ', ' ', ' ', ' ', ' '],
+                   [' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:row_game) { described_class.new(row_board)}
 
       it 'returns true' do
@@ -52,13 +52,13 @@ describe ConnectFour do
     end
 
     context 'when four game pieces in a column connect' do
-      column_board = [['X', 'O', '', '', '', ''],
-                   ['O', 'X', '', '', '', ''],
-                   ['O', 'X', '', '', '', ''],
-                   ['X', 'O', 'O', '', '', ''],
-                   ['O', 'X', 'O', '', '', ''],
-                   ['X', 'X', 'X', 'X', '', ''],
-                   ['', '', '', '', '', '']]
+      column_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                   ['O', 'X', ' ', ' ', ' ', ' '],
+                   ['O', 'X', ' ', ' ', ' ', ' '],
+                   ['X', 'O', 'O', ' ', ' ', ' '],
+                   ['O', 'X', 'O', ' ', ' ', ' '],
+                   ['X', 'X', 'X', 'X', ' ', ' '],
+                   [' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:column_game) { described_class.new(column_board)}
       it 'returns true' do
         expect(column_game.game_over?).to eq(true)
@@ -66,13 +66,13 @@ describe ConnectFour do
     end
 
     context 'when four game pieces in a diagonal connect' do
-      diagonal_board = [['X', 'O', '', '', '', ''],
-                   ['O', 'X', '', '', '', ''],
-                   ['O', 'O', 'X', 'X', '', ''],
-                   ['X', 'O', 'X', '', '', ''],
-                   ['O', 'X', 'O', '', '', ''],
-                   ['X', 'X', '', '', '', ''],
-                   ['', '', '', '', '', '']]
+      diagonal_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                   ['O', 'X', ' ', ' ', ' ', ' '],
+                   ['O', 'O', 'X', 'X', ' ', ' '],
+                   ['X', 'O', 'X', ' ', ' ', ' '],
+                   ['O', 'X', 'O', ' ', ' ', ' '],
+                   ['X', 'X', ' ', ' ', ' ', ' '],
+                   [' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:diagonal_game) { described_class.new(diagonal_board) }
 
       it 'returns true' do
@@ -99,28 +99,28 @@ describe ConnectFour do
   end
 
   describe '#make_diagonals' do
-    diagonal_board = [['X', 'O', '', '', '', ''],
-                      ['O', 'X', '', '', '', ''],
-                      ['O', 'O', 'X', 'X', '', ''],
-                      ['X', 'O', 'X', '', '', ''],
-                      ['O', 'X', 'O', '', '', ''],
-                      ['X', 'X', '', '', '', ''],
-                      ['', '', '', '', '', '']]
+    diagonal_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                      ['O', 'X', ' ', ' ', ' ', ' '],
+                      ['O', 'O', 'X', 'X', ' ', ' '],
+                      ['X', 'O', 'X', ' ', ' ', ' '],
+                      ['O', 'X', 'O', ' ', ' ', ' '],
+                      ['X', 'X', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' ']]
     subject(:diagonals_game) { described_class.new(diagonal_board)}
     context 'when given the game_board' do
       it 'returns an array of all the diagonals that are at least 4 spaces large' do
-        diagonals = [['X', 'O', '', ''],
-                     ['O', 'O', 'X', '', ''],
-                     ['X', 'X', 'X', 'X', '', ''],
-                     ['', 'X', 'O', '', '', ''],
-                     ['', '', '', '', ''],
-                     ['', '', '', ''],
-                     ['X', 'X', 'X', '', '', ''],
-                     ['O', 'O', 'X', '', '', ''],
-                     ['O', 'O', 'O', '', ''],
-                     ['X', 'X', '', ''],
-                     ['O', '', 'X', '', ''],
-                     ['', '', '', '']]
+        diagonals = [['X', 'O', ' ', ' '],
+                     ['O', 'O', 'X', ' ', ' '],
+                     ['X', 'X', 'X', 'X', ' ', ' '],
+                     [' ', 'X', 'O', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' ', ' '],
+                     [' ', ' ', ' ', ' '],
+                     ['X', 'X', 'X', ' ', ' ', ' '],
+                     ['O', 'O', 'X', ' ', ' ', ' '],
+                     ['O', 'O', 'O', ' ', ' '],
+                     ['X', 'X', ' ', ' '],
+                     ['O', ' ', 'X', ' ', ' '],
+                     [' ', ' ', ' ', ' ']]
         
         expect(diagonals_game.make_diagonals).to eq(diagonals)
       end
@@ -129,18 +129,18 @@ describe ConnectFour do
 
   describe '#print_board' do
     context 'when called' do
-      print_board = [['X', 'O', '', '', '', ''],
-                    ['O', 'X', '', '', '', ''],
-                    ['O', 'O', 'X', 'X', '', ''],
-                    ['X', 'O', 'X', '', '', ''],
-                    ['O', 'X', 'O', '', '', ''],
-                    ['X', 'X', '', '', '', ''],
-                    ['', '', '', '', '', '']]
+      print_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                    ['O', 'X', ' ', ' ', ' ', ' '],
+                    ['O', 'O', 'X', 'X', ' ', ' '],
+                    ['X', 'O', 'X', ' ', ' ', ' '],
+                    ['O', 'X', 'O', ' ', ' ', ' '],
+                    ['X', 'X', ' ', ' ', ' ', ' '],
+                    [' ', ' ', ' ', ' ', ' ', ' ']]
       subject(:print_game) { described_class.new(print_board) }
       it 'prints the board' do
-        board_output = "| | | | | | | |\n| | | | | | | |\n| | | | |X| | |\n| | |X|X|O| | |\n|O|X|O|O|X|X| |\n|X|O|O|X|O|X| |\n"
+        board_output = "| | | | | | | |\n| | | | | | | |\n| | |X| | | | |\n| | |X|X|O| | |\n|O|X|O|O|X|X| |\n|X|O|O|X|O|X| |\n"
         printed_output = print_game.print_board
-        expect { printed_output }.to output(board_output).to_stdout
+        expect(printed_output).to eq(board_output)
       end
     end
   end
