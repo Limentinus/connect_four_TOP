@@ -145,18 +145,23 @@ describe ConnectFour do
     end
   end
 
-  describe "#prompt_move" do
+  describe "#get_input" do
     subject(:prompt_game) { described_class.new }
+    
     context "when called" do
+      before do
+        allow(prompt_game).to receive(:gets).and_return('7')
+        allow(prompt_game).to receive(:puts)
+      end
       it "calls the gets function" do
         expect(prompt_game).to receive(:gets)
-        prompt_game.prompt_move
+        prompt_game.get_input
       end
 
       it "asks to imput a number between 1 and 7" do
         prompt_question = "Into which column will you drop your piece? Input a number between 1 and 7!"
         expect(prompt_game).to receive(:puts).with(prompt_question)
-        prompt_game.prompt_move
+        prompt_game.get_input
       end
     end
 
@@ -166,29 +171,29 @@ describe ConnectFour do
         allow(prompt_game).to receive(:gets).and_return(valid_input)
       end
 
-      it "calls the #place_piece function with the correct number and piece" do
-        expect(prompt_game).to receive(:place_piece).with(valid_input -1)
-        prompt_game.prompt_move
+      it "returns the correct column number" do
+        column_number = 2
+        expect(prompt_game.get_input).to eq(column_number)
       end
     end
 
     context "when given any other character" do
       before do
         invalid_input = "d"
-        allow(prompt_game).to receive(:gets).and_return(invalid_input)
+        valid_input = '3'
+        allow(prompt_game).to receive(:gets).and_return(invalid_input, valid_input)
+        allow(prompt_game).to receive(:puts)
       end
 
       it "displays error message" do
         error_message = "That's not a valid character, try again with a number between 1 and 7."
         expect(prompt_game).to receive(:puts).with(error_message)
-        prompt_game.prompt_move
+        prompt_game.get_input
       end
 
-      it "prompts another input" do
-        expect(prompt_game).to receive(:gets)
-        prompt_game.prompt_move
-      end
 
     end
   end
+
+  
 end
