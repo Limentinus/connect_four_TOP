@@ -31,28 +31,6 @@ class ConnectFour
     end
   end
 
-
-  # def get_input
-  # end
-
-  # def prompt_move
-  #   puts "Into which column will you drop your piece? Input a number between 1 and 7!"
-    
-  #   loop do
-  #     break if input_valid?(input)
-  #     place_piece(input.to_i - 1)
-  #     else
-  #     puts "That's not a valid character, try again with a number between 1 and 7."
-      
-  #     end
-  #   end
-  # end
-
-  # def input_valid?(input)
-  #   return true if input.match(/^[1-7]$/)
-  #   false
-  # end
-
   def place_piece(column, piece = @current_player)
     @game_board[column][stack_column(column)] = piece
   end
