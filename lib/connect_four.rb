@@ -6,9 +6,54 @@ class ConnectFour
     @game_board = game_board
     @game_rows = columns_to_rows(@game_board)
     @game_diagonals = make_diagonals
+    @current_player = 'X'
   end
 
-  def place_piece(column, piece)
+  def play_game
+    # puts Introduction
+    print_board
+    while !game_over?
+      place_piece(get_input)
+      # switch_player
+      puts print_board
+    end
+    puts "Congratulations! #{@current_player} Wins!"
+  end
+
+  def get_input
+    puts "Into which column will you drop your piece? Input a number between 1 and 7!"
+    loop do
+      user_input = gets.chomp
+      verified_number = (user_input.to_i - 1) if user_input.match?(/^[1-7]$/)
+      return verified_number if verified_number
+
+      puts "That's not a valid character, try again with a number between 1 and 7."
+    end
+  end
+
+
+  # def get_input
+  # end
+
+  # def prompt_move
+  #   puts "Into which column will you drop your piece? Input a number between 1 and 7!"
+    
+  #   loop do
+  #     break if input_valid?(input)
+  #     place_piece(input.to_i - 1)
+  #     else
+  #     puts "That's not a valid character, try again with a number between 1 and 7."
+      
+  #     end
+  #   end
+  # end
+
+  # def input_valid?(input)
+  #   return true if input.match(/^[1-7]$/)
+  #   false
+  # end
+
+  def place_piece(column, piece = @current_player)
     @game_board[column][stack_column(column)] = piece
   end
 
@@ -115,7 +160,7 @@ class ConnectFour
 
   def print_board
     board_string = ""
-    @game_rows.reverse_each do |row|
+    columns_to_rows(@game_board).reverse_each do |row|
       row_string = "|"
       row.each do |el|
         row_string << "#{el}|"
@@ -128,15 +173,16 @@ class ConnectFour
 end
   
   
-diagonal_board = [['X', 'O', '', '', '', ''],
-                      ['O', 'X', '', '', '', ''],
-                      ['O', 'O', 'X', 'X', '', ''],
-                      ['X', 'O', 'X', '', '', ''],
-                      ['O', 'X', 'O', '', '', ''],
-                      ['X', 'X', '', '', '', ''],
-                      ['', '', '', '', '', '']]
-test = ConnectFour.new(diagonal_board)
-test.print_board
+# diagonal_board = [['X', 'O', ' ', ' ', ' ', ' '],
+#                       ['O', 'X', ' ', ' ', ' ', ' '],
+#                       ['O', 'O', 'X', ' ', ' ', ' '],
+#                       ['X', 'O', 'X', ' ', ' ', ' '],
+#                       ['O', 'X', 'O', ' ', ' ', ' '],
+#                       ['X', 'X', ' ', ' ', ' ', ' '],
+#                       [' ', ' ', ' ', ' ', ' ', ' ']]
+# test = ConnectFour.new(diagonal_board)
+# test.play_game
+
   
 
 
