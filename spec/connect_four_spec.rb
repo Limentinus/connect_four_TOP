@@ -2,13 +2,21 @@ require_relative '../lib/connect_four'
 
 describe ConnectFour do
   describe '#place_piece' do
+
     context 'when a piece and a column is given' do
       subject(:place_game) { described_class.new }
 
       it 'updates the game board hash' do
         place_game.place_piece(5, 'X')
         game_board = place_game.instance_variable_get(:@game_board)
-        expect(game_board[5][0]).to eq('X')
+        updated_board = [[' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' '],
+                         ['X', ' ', ' ', ' ', ' ', ' '],
+                         [' ', ' ', ' ', ' ', ' ', ' ']]
+        expect(game_board).to eq(updated_board)
       end
     end
 
@@ -195,17 +203,18 @@ describe ConnectFour do
     end
   end
 
-  describe "switch_player" do
+  describe "#switch_player" do
     context "when called" do
       subject(:switch_game) { described_class.new }
       it "switches the player" do
         switch_game.switch_player
+        player = switch_game.instance_variable_get(:@current_player)
         expect(switch_game.current_player).to eq('O')
       end
     end
   end
 
-  
+
 
   
 end
