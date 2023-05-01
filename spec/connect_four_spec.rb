@@ -195,5 +195,17 @@ describe ConnectFour do
     end
   end
 
+  describe "switch_player" do
+    context "when called" do
+      subject(:switch_game) { described_class.new }
+      it "switches the player" do
+        switch_game.switch_player
+        expect(switch_game.current_player).to eq('O')
+      end
+    end
+  end
+
+  
+
   
 end
