@@ -209,7 +209,7 @@ describe ConnectFour do
       it "switches the player" do
         switch_game.switch_player
         player = switch_game.instance_variable_get(:@current_player)
-        expect(switch_game.current_player).to eq('O')
+        expect(switch_game.current_player).to eq('X')
       end
     end
   end
