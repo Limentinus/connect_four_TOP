@@ -1,6 +1,6 @@
 class ConnectFour
 
-  attr_reader :game_board
+  attr_reader :game_board, :current_player
   
   def initialize(game_board = Array.new(7, Array.new(6, ' ')))
     @game_board = game_board
@@ -146,6 +146,14 @@ class ConnectFour
       board_string << "#{row_string}\n"
     end
     board_string
+  end
+
+  def switch_player
+    if @current_player == 'X'
+      @current_player = 'O'
+    else
+      @current_player = 'X'
+    end
   end
   
 end
