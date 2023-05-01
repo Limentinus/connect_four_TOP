@@ -2,28 +2,34 @@ class ConnectFour
 
   attr_reader :game_board, :current_player
   
-  def initialize(game_board = Array.new(7, Array.new(6, ' ')))
+  def initialize(game_board = Array.new(7) { Array.new(6, ' ') })
     @game_board = game_board
     @game_rows = columns_to_rows(@game_board)
     @game_diagonals = make_diagonals
-    @current_player = 'X'
+    @current_player = 'O'
   end
 
   def play_game
     # puts Introduction
-    print_board
-    while !game_over?
-      place_piece(get_input)
-      # switch_player
+    puts print_board
+    until game_over?
+      switch_player
+      player_input = get_input
+      break if player_input == 'exit'
+      
+      puts "Player: #{@current_player}"
+      place_piece(player_input)
       puts print_board
     end
     puts "Congratulations! #{@current_player} Wins!"
   end
 
   def get_input
-    puts "Into which column will you drop your piece? Input a number between 1 and 7!"
+    puts 'Into which column will you drop your piece? Input a number between 1 and 7!'
     loop do
       user_input = gets.chomp
+      return user_input if user_input == 'exit'
+
       verified_number = (user_input.to_i - 1) if user_input.match?(/^[1-7]$/)
       return verified_number if verified_number
 
@@ -32,7 +38,8 @@ class ConnectFour
   end
 
   def place_piece(column, piece = @current_player)
-    @game_board[column][stack_column(column)] = piece
+    row = stack_column(column)
+    @game_board[column][row] = piece
   end
 
   def stack_column(column)
@@ -166,7 +173,7 @@ end
 #                       ['O', 'X', 'O', ' ', ' ', ' '],
 #                       ['X', 'X', ' ', ' ', ' ', ' '],
 #                       [' ', ' ', ' ', ' ', ' ', ' ']]
-# test = ConnectFour.new(diagonal_board)
+# test = ConnectFour.new
 # test.play_game
 
   
