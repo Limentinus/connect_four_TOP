@@ -16,7 +16,7 @@ class ConnectFour
       switch_player
       player_input = get_input
       break if player_input == 'exit'
-      
+
       puts "Player: #{@current_player}"
       place_piece(player_input)
       puts print_board
@@ -53,12 +53,12 @@ class ConnectFour
     end
 
     #check rows for win
-    @game_rows.each do |row|
+    columns_to_rows(@game_board).each do |row|
       return true if winning_line?(row)
     end
 
     #check diagonals for win
-    @game_diagonals.each do |diagonal|
+    make_diagonals.each do |diagonal|
       return true if winning_line?(diagonal)
     end
 
@@ -166,15 +166,15 @@ class ConnectFour
 end
   
   
-# diagonal_board = [['X', 'O', ' ', ' ', ' ', ' '],
-#                       ['O', 'X', ' ', ' ', ' ', ' '],
-#                       ['O', 'O', 'X', ' ', ' ', ' '],
-#                       ['X', 'O', 'X', ' ', ' ', ' '],
-#                       ['O', 'X', 'O', ' ', ' ', ' '],
-#                       ['X', 'X', ' ', ' ', ' ', ' '],
-#                       [' ', ' ', ' ', ' ', ' ', ' ']]
-# test = ConnectFour.new
-# test.play_game
+diagonal_board = [['X', 'O', ' ', ' ', ' ', ' '],
+                      ['O', 'X', ' ', ' ', ' ', ' '],
+                      ['O', 'O', 'X', ' ', ' ', ' '],
+                      ['X', 'O', 'X', ' ', ' ', ' '],
+                      ['O', 'X', 'O', ' ', ' ', ' '],
+                      ['X', 'X', ' ', ' ', ' ', ' '],
+                      [' ', ' ', ' ', ' ', ' ', ' ']]
+test = ConnectFour.new
+test.play_game
 
   
 
